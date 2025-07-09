@@ -29,17 +29,17 @@ const FAQs: FC = () => {
     <section className="section">
       <div className="container">
         <h2 className="text-4xl md:text-7xl lg:text-8xl">FAQs</h2>
-        <div className="mt-10 md:mt-16 lg:">
+        <div className="lg: mt-10 md:mt-16">
           {faqs.map(({ question, answer }) => (
             <div
               key={question}
-              className="border-t border-stone-400 border-dotted py-6 md:py-8 lg:py-10 last:border-b"
+              className="border-t border-dotted border-stone-400 py-6 last:border-b md:py-8 lg:py-10"
             >
               <div className="flex items-center justify-between gap-4">
                 <div className="text-2xl md:text-3xl lg:text-8xl">
                   {question}
                 </div>
-                <div className="inline-flex items-center justify-center size-11 border border-stone-400 rounded-full shrink-0">
+                <div className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-stone-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

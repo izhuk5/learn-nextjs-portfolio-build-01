@@ -38,7 +38,7 @@ const Projects: FC = () => {
         <div className="mt-10 md:mt-16 lg:mt-20">
           {projects.map(({ name, image }) => (
             <a
-              className="border-t py-6 md:py-8 lg:py-10 border-stone-400 border-dotted flex flex-col last:border-b"
+              className="flex flex-col border-t border-dotted border-stone-400 py-6 last:border-b md:py-8 lg:py-10"
               href="#"
               key={name}
             >
@@ -50,7 +50,7 @@ const Projects: FC = () => {
                     alt={`${name}`}
                   />
                 </div>
-                <div className="mt-8 md:mt-0 flex justify-between items-center">
+                <div className="mt-8 flex items-center justify-between md:mt-0">
                   <h3 className="text-2xl md:text-3xl lg:text-4xl">{name}</h3>
                   <svg
                     className="size-6"

@@ -33,9 +33,9 @@ const Footer: FC = () => {
             <div className="size-3 rounded-full bg-green-400"></div>
             <span className="uppercase">One spot available for next month</span>
           </div>
-          <div className='grid md:grid-cols-3 md:items-center'>
-            <div className='md:col-span-2'>
-              <h2 className="text-4xl md:text-7xl lg:text-8xl mt-8 font-extralight">
+          <div className="grid md:grid-cols-3 md:items-center">
+            <div className="md:col-span-2">
+              <h2 className="mt-8 text-4xl font-extralight md:text-7xl lg:text-8xl">
                 Enough talk. Let&apos;s make something great together.
               </h2>
               <Button
@@ -62,17 +62,19 @@ const Footer: FC = () => {
               </Button>
             </div>
             <div>
-              <nav className="flex flex-col md:items-end gap-8 mt-16 md:mt-0">
+              <nav className="mt-16 flex flex-col gap-8 md:mt-0 md:items-end">
                 {navItems.map(({ href, label }) => (
                   <a href={href} key={label}>
-                    <Button variant='text' className="text-lg">{label}</Button>
+                    <Button variant="text" className="text-lg">
+                      {label}
+                    </Button>
                   </a>
                 ))}
               </nav>
             </div>
           </div>
         </div>
-        <p className="py-16 text-white/30 text-sm">
+        <p className="py-16 text-sm text-white/30">
           Copyright &copy; Alex Taylor &bull; All rights reserved
         </p>
       </div>

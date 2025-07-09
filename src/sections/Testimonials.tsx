@@ -40,22 +40,22 @@ const Testimonials: FC = () => {
 
   return (
     <section className="section">
-      <h2 className="text-4xl md:text-7xl lg:text-8xl flex flex-col overflow-hidden">
+      <h2 className="flex flex-col overflow-hidden text-4xl md:text-7xl lg:text-8xl">
         <span className="whitespace-nowrap">
           Some nice words from my past clients
         </span>
-        <span className="whitespace-nowrap self-end text-orange-500">
+        <span className="self-end whitespace-nowrap text-orange-500">
           Some nice words from my past clients
         </span>
       </h2>
       <div className="container">
-        <div className="mt-20 ">
+        <div className="mt-20">
           {testimonials.map(
             ({ name, image, company, role, quote, imagePositionY }, index) =>
               index === testimonialIndex && (
                 <div
                   key={name}
-                  className="grid md:grid-cols-5 gap-8 lg:gap-16 md:items-center"
+                  className="grid gap-8 md:grid-cols-5 md:items-center lg:gap-16"
                 >
                   <div className="aspect-square md:col-span-2 md:aspect-[9/16]">
                     <Image
@@ -68,12 +68,12 @@ const Testimonials: FC = () => {
                     />
                   </div>
                   <blockquote className="md:col-span-3">
-                    <div className="text-3xl md:text-5xl lg:text-6xl mt-8 md:mt-0">
+                    <div className="mt-8 text-3xl md:mt-0 md:text-5xl lg:text-6xl">
                       <span>&ldquo;</span>
                       <span>{quote}</span>
                       <span>&rdquo;</span>
                     </div>
-                    <cite className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl">
+                    <cite className="mt-4 block not-italic md:mt-8 md:text-lg lg:text-xl">
                       {name}, {role} at {company}
                     </cite>
                   </blockquote>
@@ -81,8 +81,8 @@ const Testimonials: FC = () => {
               ),
           )}
         </div>
-        <div className="flex gap-4 mt-6 lg:mt-10">
-          <button className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full">
+        <div className="mt-6 flex gap-4 lg:mt-10">
+          <button className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -98,7 +98,7 @@ const Testimonials: FC = () => {
               />
             </svg>
           </button>
-          <button className="border border-stone-400 size-11 inline-flex items-center justify-center rounded-full">
+          <button className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
