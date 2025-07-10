@@ -11,10 +11,11 @@ const Button = (
   return (
     <button
       className={twMerge(
-        "inline-flex h-11 items-center gap-2 rounded-xl border border-orange-500 px-6 uppercase",
+        "inline-flex h-11 items-center gap-2 rounded-xl border border-orange-500 px-6 uppercase transition duration-500 relative group/button",
         variant === "primary" && "bg-orange-500 text-white",
-        variant === "secondary" && "",
-        variant === "text" && "h-auto border-transparent px-0",
+        variant === "secondary" && "hover:bg-orange-500 hover:text-white",
+        variant === "text" &&
+          "h-auto  px-0 border-transparent after:transition-all after:duration-500 after:content-[''] after:h-px after:w-0 after:absolute after:top-full after:bg-orange-500 hover:after:w-full",
         className,
       )}
       {...rest}
