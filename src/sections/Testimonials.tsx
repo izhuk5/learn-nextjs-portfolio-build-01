@@ -1,8 +1,11 @@
-import { FC } from "react";
+"use client";
+
+import { FC, useRef, useState } from "react";
 import image1 from "@/assets/images/testimonial-1.jpg";
 import image2 from "@/assets/images/testimonial-2.jpg";
 import image3 from "@/assets/images/testimonial-3.jpg";
-import Image from "next/image";
+import { useScroll, motion, useTransform, AnimatePresence } from "motion/react";
+import Testimonial from "@/components/Testimonial";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const testimonials = [
@@ -36,53 +39,79 @@ const testimonials = [
 ];
 
 const Testimonials: FC = () => {
-  const testimonialIndex = 0;
+  const titleRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: titleRef,
+    offset: ["start end", "end start"],
+  });
 
+  const transformTop = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const transformBotoom = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+  const handleClickPrev = () => {
+    setTestimonialIndex(curr => {
+      if (curr === 0) {
+        return testimonials.length - 1;
+      }
+      return curr - 1;
+    });
+  };
+
+  const handleClickNext = () => {
+    setTestimonialIndex(curr => {
+      if (curr === testimonials.length - 1) return 0;
+      return curr + 1;
+    });
+  };
   return (
     <section className="section" id="testimonials">
-      <h2 className="flex flex-col overflow-hidden text-4xl md:text-7xl lg:text-8xl">
-        <span className="whitespace-nowrap">
+      <h2
+        className="flex flex-col overflow-hidden text-4xl md:text-7xl lg:text-8xl"
+        ref={titleRef}
+      >
+        <motion.span
+          className="whitespace-nowrap"
+          style={{
+            x: transformTop,
+          }}
+        >
           Some nice words from my past clients
-        </span>
-        <span className="self-end whitespace-nowrap text-orange-500">
+        </motion.span>
+        <motion.span
+          className="self-end whitespace-nowrap text-orange-500"
+          style={{
+            x: transformBotoom,
+          }}
+        >
           Some nice words from my past clients
-        </span>
+        </motion.span>
       </h2>
       <div className="container">
         <div className="mt-20">
-          {testimonials.map(
-            ({ name, image, company, role, quote, imagePositionY }, index) =>
-              index === testimonialIndex && (
-                <div
-                  key={name}
-                  className="grid gap-8 md:grid-cols-5 md:items-center lg:gap-16"
-                >
-                  <div className="aspect-square md:col-span-2 md:aspect-[9/16]">
-                    <Image
-                      className="size-full object-cover"
-                      src={image}
-                      alt={name}
-                      style={{
-                        objectPosition: `50% ${imagePositionY * 100}%`,
-                      }}
-                    />
-                  </div>
-                  <blockquote className="md:col-span-3">
-                    <div className="mt-8 text-3xl md:mt-0 md:text-5xl lg:text-6xl">
-                      <span>&ldquo;</span>
-                      <span>{quote}</span>
-                      <span>&rdquo;</span>
-                    </div>
-                    <cite className="mt-4 block not-italic md:mt-8 md:text-lg lg:text-xl">
-                      {name}, {role} at {company}
-                    </cite>
-                  </blockquote>
-                </div>
-              ),
-          )}
+          <AnimatePresence mode="wait" initial={false}>
+            {testimonials.map(
+              ({ name, image, company, role, quote, imagePositionY }, index) =>
+                index === testimonialIndex && (
+                  <Testimonial
+                    key={name}
+                    name={name}
+                    image={image}
+                    company={company}
+                    role={role}
+                    quote={quote}
+                    imagePositionY={imagePositionY}
+                  />
+                ),
+            )}
+          </AnimatePresence>
         </div>
         <div className="mt-6 flex gap-4 lg:mt-10">
-          <button className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400">
+          <button
+            className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400"
+            onClick={handleClickPrev}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -98,7 +127,10 @@ const Testimonials: FC = () => {
               />
             </svg>
           </button>
-          <button className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400">
+          <button
+            className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400"
+            onClick={handleClickNext}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
