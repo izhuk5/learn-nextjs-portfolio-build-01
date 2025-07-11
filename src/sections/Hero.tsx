@@ -8,7 +8,6 @@ import { motion, useScroll, useTransform } from "motion/react";
 import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 const Hero: FC = () => {
-  // const [titleScope, titleAnimate] = useAnimate();
   const scrollingDiv = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
