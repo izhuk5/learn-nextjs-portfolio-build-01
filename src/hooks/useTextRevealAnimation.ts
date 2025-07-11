@@ -4,6 +4,7 @@ import SplitType from "split-type";
 
 const useTextRevealAnimation = () => {
   const [scope, animate] = useAnimate();
+
   useEffect(() => {
     new SplitType(scope.current, {
       types: "lines,words",
@@ -11,7 +12,7 @@ const useTextRevealAnimation = () => {
     });
   }, [scope]);
 
-  const enterenceAnimation = () => {
+  const entranceAnimation = () => {
     return animate(
       scope.current.querySelectorAll(".word"),
       {
@@ -32,7 +33,7 @@ const useTextRevealAnimation = () => {
       },
       {
         duration: 0.3,
-        delay: stagger(-0.025, {
+        delay: stagger(-0.25, {
           startDelay: scope.current.querySelectorAll(".word").length * 0.25,
         }),
       },
@@ -41,7 +42,7 @@ const useTextRevealAnimation = () => {
 
   return {
     scope,
-    enterenceAnimation,
+    entranceAnimation,
     exitAnimation,
   };
 };

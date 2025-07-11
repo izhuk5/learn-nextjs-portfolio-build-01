@@ -1,21 +1,14 @@
 "use client";
 
 import { FC, useEffect, useRef } from "react";
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 import heroImage from "@/assets/images/hero-image.jpg";
 import Image from "next/image";
 import Button from "@/components/Button";
-import SplitType from "split-type";
-import {
-  useAnimate,
-  motion,
-  stagger,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
+import useTextRevealAnimation from "@/hooks/useTextRevealAnimation";
 
 const Hero: FC = () => {
-  const [titleScope, titleAnimate] = useAnimate();
+  // const [titleScope, titleAnimate] = useAnimate();
   const scrollingDiv = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -25,23 +18,12 @@ const Hero: FC = () => {
 
   const portraitWidth = useTransform(scrollYProgress, [0, 1], ["100%", "240%"]);
 
-  useEffect(() => {
-    new SplitType(titleScope.current, {
-      types: "lines,words",
-      tagName: "span",
-    });
+  const { scope, entranceAnimation } = useTextRevealAnimation();
 
-    titleAnimate(
-      titleScope.current.querySelectorAll(".word"),
-      {
-        transform: "translateY(0)",
-      },
-      {
-        duration: 0.5,
-        delay: stagger(0.2),
-      },
-    );
-  }, []);
+  useEffect(() => {
+    entranceAnimation();
+  }, [entranceAnimation]);
+
   return (
     <section>
       <div className="grid md:grid-cols-12 md:h-screen items-stretch sticky top-0">
@@ -50,7 +32,7 @@ const Hero: FC = () => {
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              ref={titleScope}
+              ref={scope}
               className="mt-40 text-5xl md:mt-0 md:text-6xl lg:text-7xl"
             >
               Crafting digital experiences through code and creative design

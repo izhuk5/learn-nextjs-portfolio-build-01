@@ -109,7 +109,7 @@ const Testimonials: FC = () => {
         </div>
         <div className="mt-6 flex gap-4 lg:mt-10">
           <button
-            className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300"
             onClick={handleClickPrev}
           >
             <svg
@@ -128,7 +128,7 @@ const Testimonials: FC = () => {
             </svg>
           </button>
           <button
-            className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-stone-400 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300"
             onClick={handleClickNext}
           >
             <svg
